@@ -55,6 +55,10 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set visualbell t_vb=
+" You won't usually regret turning this feature on, but if you ever find it annoying—say, you switch from writing a script to writing a letter and a <tab> no longer indicates the beginning of a code block—you can turn it off with this command:
+":set noautoindent
+set autoindent
+:nnoremap <F8> :setl noai nocin nosi inde=<CR>
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
