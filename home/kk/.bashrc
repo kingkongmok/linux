@@ -70,6 +70,8 @@ shopt -s histappend
 HISTSIZE=20000
 HISTFILESIZE=20000
 
+# Display Date And Time For Each Command
+HISTTIMEFORMAT="%F %T "
 
 # check the window size after each command and, if necessary,
 # some more ls aliases
@@ -81,7 +83,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias ll='ls -alF'
 alias la='ls -A'
-alias grep='grep --color=auto'
+alias grep='grep --perl-regexp --color=auto'
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
