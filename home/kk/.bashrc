@@ -40,9 +40,9 @@ if [ -x /usr/bin/fortune ]; then
     /usr/bin/fortune -s | cowsay     # Makes our day a bit more fun.... :-)
 fi
 
-if [ -x /usr/bin/curl ] ; then
-   curl -s "http://www.weather.com.cn/data/sk/101280101.html"|awk -F '[,:]' '{printf ("%s,%s:%s,温度:%s°C,%s:%s,湿度:%s\n"),$3,$17,$18,$7,$9,$11,$13}'|sed 's/"//g' 
-fi
+#if [ -x /usr/bin/curl ] ; then
+#   curl -s "http://www.weather.com.cn/data/sk/101280101.html"|awk -F '[,:]' '{printf ("%s,%s:%s,温度:%s°C,%s:%s,湿度:%s\n"),$3,$17,$18,$7,$9,$11,$13}'|sed 's/"//g' 
+#fi
 
 function _exit()        # Function to run upon exit of shell.
 {
@@ -70,6 +70,8 @@ shopt -s histappend
 HISTSIZE=20000
 HISTFILESIZE=20000
 
+# Display Date And Time For Each Command
+HISTTIMEFORMAT="%y-%m-%d %T "
 
 # check the window size after each command and, if necessary,
 # some more ls aliases
@@ -81,7 +83,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias ll='ls -alF'
 alias la='ls -A'
-alias grep='grep --color=auto'
+alias grep='grep --perl-regexp --color=auto'
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
