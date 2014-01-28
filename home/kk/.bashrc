@@ -71,7 +71,7 @@ HISTSIZE=20000
 HISTFILESIZE=20000
 
 # Display Date And Time For Each Command
-HISTTIMEFORMAT="%y-%m-%d %T "
+HISTTIMEFORMAT="%F %T "
 
 # check the window size after each command and, if necessary,
 # some more ls aliases
