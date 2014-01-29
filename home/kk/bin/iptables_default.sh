@@ -10,10 +10,10 @@
 PUB_ETH="eth0"
 
 # enable the following port ONLY.
-TCP_PORT=( 1:1024 2049)
+TCP_PORT=( 21 22 25 80 111 139 443 445 2049 4000 4080 4662 6881 6882 14310 50612 63389 )
 
 # enable the following port ONLY.
-UDP_PORT=( 1:1024 )
+UDP_PORT=( 137 138 2616 4666 6881 14310 42573 60754 )
 
 # if file exist, block the IPs.
 BLOCK_IP_LIST=/etc/iptables/blocked_ip.fw
