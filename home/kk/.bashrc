@@ -83,7 +83,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias ll='ls -alF'
 alias la='ls -A'
-alias grep='grep --perl-regexp --color=auto'
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
@@ -100,5 +99,7 @@ alias ls='ls --color=auto --time-style=long-iso'
 alias l='locate -i -r'
 alias s='sdcv'
 alias mysql='mysql --sigint-ignore'
+alias grep='grep --perl-regexp --color=auto'
+alias g='grep --perl-regexp --color=auto'
 
 
