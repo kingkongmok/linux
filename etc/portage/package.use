@@ -61,3 +61,10 @@ dev-lang/php fpm cgi cjk calendar curl embed gd mhash mysql mysqli zip
 # headless means build without any graphic frontend \
 # disable it according http://wiki.gentoo.org/wiki/VirtualBox
 app-emulation/virtualbox    headless 
+# http://forums.gentoo.org/viewtopic-t-904120-start-0.html
+xfce-base/xfdesktop thunar
+# required by net-libs/webkit-gtk-2.2.5[webgl]
+# required by gnome-extra/zenity-3.8.0-r2[webkit]
+# required by @selected
+# required by @world (argument)
+=x11-libs/cairo-1.12.14-r4 opengl
