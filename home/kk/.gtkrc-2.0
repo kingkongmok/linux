@@ -1,0 +1,6 @@
+gtk-theme-name = "Xfce"
+style "user-font"
+{
+    font_name="sans 11"
+}
+widget_class "*" style "user-font"
