@@ -34,7 +34,8 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init("/home/"..os.getenv("USER").."/.config/awesome/theme.lua")
+-- beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xfce4-terminal"
@@ -97,6 +98,19 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" })
 
+
+-- enable autostart
+autorun = true
+autorunApps = 
+{ 
+    "fcitx",
+}
+
+if autorun then
+    for app = 1, #autorunApps do
+        awful.util.spawn_with_shell(autorunApps[app])
+    end
+end
 -- Create a systray
 mysystray = widget({ type = "systray" })
 
@@ -225,6 +239,9 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey, "Control" }, "n", function () awful.util.spawn("/usr/bin/google-chrome-stable --proxy-server=:::3128") end),
+    awful.key({ modkey, "Control" }, "u", function () awful.util.spawn('/usr/bin/google-chrome-stable --proxy-server="socks://127.0.0.1:7070" --user-data-dir="/home/kk/.config/usproxy/"') end),
+    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("/usr/bin/xscreensaver-command --lock") end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
