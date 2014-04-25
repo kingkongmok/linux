@@ -23,7 +23,7 @@ endif
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-set background=dark
+ set background=dark
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -55,10 +55,13 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set visualbell t_vb=
+set t_Co=256
 " You won't usually regret turning this feature on, but if you ever find it annoying—say, you switch from writing a script to writing a letter and a <tab> no longer indicates the beginning of a code block—you can turn it off with this command:
 ":set noautoindent
 set autoindent
 :nnoremap <F8> :setl noai nocin nosi inde=<CR>
+map <F10> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")

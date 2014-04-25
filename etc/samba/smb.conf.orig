@@ -28,7 +28,6 @@
 # server string is the equivalent of the NT Description field
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
    server string = %h
 =======
    server string = %h server
@@ -44,9 +43,6 @@
 =======
    server string = Samba Server
 >>>>>>> gentoo
-=======
-   server string = Samba Server
->>>>>>> t510
 
 # Security mode. Defines in which mode Samba will operate. Possible 
 # values are share, user, server, domain and ads. Most people will want 
@@ -168,18 +164,12 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
    #veto files = /*.exe/*.dll/*.pif/*.com/*.vbs/
 =======
 # DNS Proxy - tells Samba whether or not to try to resolve NetBIOS names
 # via DNS nslookups. The default is NO.
    dns proxy = no 
 >>>>>>> gentoo
-=======
-# DNS Proxy - tells Samba whether or not to try to resolve NetBIOS names
-# via DNS nslookups. The default is NO.
-   dns proxy = no 
->>>>>>> t510
 
 # These scripts are used on a domain controller or stand-alone 
 # machine to add or delete corresponding unix accounts
@@ -191,14 +181,11 @@
 ;  delete group script = /usr/sbin/groupdel %g
 
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
 >>>>>>> kk
 #======================= Share Definitions =======================
 =======
 >>>>>>> gentoo
-=======
->>>>>>> t510
 
 #============================ Share Definitions ==============================
 [homes]
@@ -216,7 +203,6 @@
 ;   share modes = no
 
 <<<<<<< HEAD
-<<<<<<< HEAD
 # File creation mask is set to 0700 for security reasons. If you want to
 # create files with group=rw permissions, set next parameter to 0775.
 <<<<<<< HEAD
@@ -233,8 +219,6 @@
    directory mask = 0700
 >>>>>>> kk
 =======
-=======
->>>>>>> t510
 
 # Un-comment the following to provide a specific roving profile share
 # the default is to use the user's home directory
@@ -242,7 +226,6 @@
 ;    path = /var/lib/samba/profiles
 ;    browseable = no
 ;    guest ok = yes
-<<<<<<< HEAD
 >>>>>>> gentoo
 
 
@@ -402,10 +385,6 @@
 ;   postexec = /bin/umount /cdrom
 >>>>>>> kk
 =======
-=======
-
-
->>>>>>> t510
 # NOTE: If you have a BSD-style print system there is no need to 
 # specifically define each individual printer
 [printers]
@@ -494,8 +473,5 @@
 ;   printable = no
 ;   create mask = 0765
 
-<<<<<<< HEAD
 >>>>>>> gentoo
-=======
->>>>>>> t510
 

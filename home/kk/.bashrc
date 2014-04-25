@@ -1,101 +1,21 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# /etc/skel/.bashrc
+#
+# This file is sourced by all *interactive* bash shells on startup,
+# including some apparently interactive shells such as scp and rcp
+# that can't tolerate any output.  So make sure this doesn't display
+# anything or bad things will happen !
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
-# ... or force ignoredups and ignorespace
-HISTCONTROL=ignoredups:ignorespace
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=20000
-HISTFILESIZE=20000
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+# Test for an interactive shell.  There is no need to set anything
+# past t
+# outputting anything in those cases.
+if [[ $- != *i* ]] ; then
+	# Shell is non-interactive.  Be done now!
+	return
 fi
 
 
-
-#-------------------------------------------------------------------------------
-#  edit by kk here
-#-------------------------------------------------------------------------------
-MAIL=~/.mail/mbox
-MAILCHECK=30
-MAILPATH=~/.mail/mbox?"You have mail"
-
-#-------------------------------------------------------------
-# Automatic setting of $DISPLAY (if not set already).
-# This works for linux - your mileage may vary. ... 
-# The problem is that different types of terminals give
-# different answers to 'who am i' (rxvt in particular can be
-# troublesome).
-# I have not found a 'universal' method yet.
-#-------------------------------------------------------------
-
-function get_xserver ()
-{
-    case $TERM in
-       xterm )
-            XSERVER=$(who am i | awk '{print $NF}' | tr -d ')''(' ) 
-            # Ane-Pieter Wieringa suggests the following alternative:
-            # I_AM=$(who am i)
-            # SERVER=${I_AM#*(}
-            # SERVER=${SERVER%*)}
-
-            XSERVER=${XSERVER%%:*}
-            ;;
-        aterm | rxvt)
-        # Find some code that works here. ...
-            ;;
-    esac  
-}
-
-if [ -z ${DISPLAY:=""} ]; then
-    get_xserver
-    if [[ -z ${XSERVER}  || ${XSERVER} == $(hostname) || \
-      ${XSERVER} == "unix" ]]; then 
-        DISPLAY=":0.0"          # Display on local host.
-    else
-        DISPLAY=${XSERVER}:0.0  # Display on remote host.
-    fi
-fi
-
-export DISPLAY
+# Put your fun stuff here.
 
 #-------------------------------------------------------------
 # Greeting, motd etc...
@@ -116,9 +36,13 @@ NC='\e[0m'              # No Color
 echo -e "${CYAN}This is ${RED}${HOSTNAME}${CYAN}. You're ${RED}${USER}${CYAN} from ${RED}$DISPLAY${NC}"
 date
 echo 
-if [ -x /usr/games/fortune ]; then
-    /usr/games/fortune -s | cowsay     # Makes our day a bit more fun.... :-)
+if [ -x /usr/bin/fortune ]; then
+    /usr/bin/fortune -s | cowsay     # Makes our day a bit more fun.... :-)
 fi
+
+#if [ -x /usr/bin/curl ] ; then
+#   curl -s "http://www.weather.com.cn/data/sk/101280101.html"|awk -F '[,:]' '{printf ("%s,%s:%s,温度:%s°C,%s:%s,湿度:%s\n"),$3,$17,$18,$7,$9,$11,$13}'|sed 's/"//g' 
+#fi
 
 function _exit()        # Function to run upon exit of shell.
 {
@@ -132,58 +56,50 @@ trap _exit EXIT
 #-------------------------------------------------------------
 
 
+# to enable bash completion, install app-shells/bash-completion
+. /etc/profile.d/bash-completion.sh
 
-if [ "$color_prompt" = yes ]; then
-	if [[ "${DISPLAY%%:0*}" != "" ]]; then  
-	    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-	else
-	    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-	fi
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
+# don't put duplicate lines in the history. See bash(1) for more options
+# ... or force ignoredups and ignorespace
+HISTCONTROL=ignoredups:ignorespace
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+# append to the history file, don't overwrite it
+shopt -s histappend
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto --time-style=long-iso'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=20000
+HISTFILESIZE=20000
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-    alias l='locate -i -r'
-    alias s='sdcv'
-fi
+# Display Date And Time For Each Command
+HISTTIMEFORMAT="%F %T "
 
+# check the window size after each command and, if necessary,
+# some more ls aliases
+# some more ls aliases
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
+alias ll='ls -alF'
+alias la='ls -A'
+alias ll='ls -alF'
+alias la='ls -A'
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+#-------------------------------------------------------------------------------
+#  edit by kk here
+#-------------------------------------------------------------------------------
+MAIL=~/.mail/mbox
+MAILCHECK=30
+MAILPATH=~/.mail/mbox?"You have mail"
+export PATH=$PATH:~/bin/
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
+alias ls='ls --color=auto --time-style=long-iso'
+alias l='locate -i -r'
+alias s='sdcv'
+alias mysql='mysql --sigint-ignore'
+alias grep='grep --perl-regexp --color=auto'
+alias g='grep --perl-regexp --color=auto'
+
+
