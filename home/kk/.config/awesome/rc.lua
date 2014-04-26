@@ -38,7 +38,8 @@ beautiful.init("/home/"..os.getenv("USER").."/.config/awesome/theme.lua")
 -- beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xfce4-terminal"
+-- terminal = "xfce4-terminal"
+terminal = "lxterminal"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -240,8 +241,10 @@ globalkeys = awful.util.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "n", function () awful.util.spawn("/usr/bin/google-chrome-stable --proxy-server=:::3128") end),
+    awful.key({ modkey, "Control" }, "e", function () awful.util.spawn("/usr/bin/pcmanfm") end),
     awful.key({ modkey, "Control" }, "u", function () awful.util.spawn('/usr/bin/google-chrome-stable --proxy-server="socks://127.0.0.1:7070" --user-data-dir="/home/kk/.config/usproxy/"') end),
-    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("/usr/bin/xscreensaver-command --lock") end),
+    awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/Pictures/ 2>/dev/null'") end),
+    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("/usr/bin/xtrlock") end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
@@ -388,3 +391,16 @@ end)
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+
+function start_daemon(dae)
+    daeCheck = os.execute("ps -eF | grep -v grep | grep -w " .. dae)
+    if (daeCheck ~= 0) then
+        os.execute(dae .. " &")
+    end
+end
+
+procs = {"gnome-settings-daemon"}
+for k = 1, #procs do
+    start_daemon(procs[k])
+end
