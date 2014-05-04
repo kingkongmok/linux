@@ -74,21 +74,14 @@ mail_owner = postfix
 #
 #myhostname = host.domain.tld
 #myhostname = virtual.domain.tld
-<<<<<<< HEAD
 myhostname = gentoo.kk.igb
-=======
->>>>>>> t510
 
 # The mydomain parameter specifies the local internet domain name.
 # The default is to use $myhostname minus the first component.
 # $mydomain is used as a default value for many other configuration
 # parameters.
 #
-<<<<<<< HEAD
 mydomain = kk.igb
-=======
-#mydomain = domain.tld
->>>>>>> t510
 
 # SENDING MAIL
 # 
@@ -103,11 +96,7 @@ mydomain = kk.igb
 # myorigin also specifies the default domain name that is appended
 # to recipient addresses that have no @domain part.
 #
-<<<<<<< HEAD
 myorigin = $myhostname
-=======
-#myorigin = $myhostname
->>>>>>> t510
 #myorigin = $mydomain
 
 # RECEIVING MAIL
@@ -122,11 +111,7 @@ myorigin = $myhostname
 #
 # Note: you need to stop/start Postfix when this parameter changes.
 #
-<<<<<<< HEAD
 inet_interfaces = all
-=======
-#inet_interfaces = all
->>>>>>> t510
 #inet_interfaces = $myhostname
 #inet_interfaces = $myhostname, localhost
 
@@ -173,11 +158,7 @@ inet_interfaces = all
 #
 # See also below, section "REJECTING MAIL FOR UNKNOWN LOCAL USERS".
 #
-<<<<<<< HEAD
 mydestination = $myhostname, localhost.$mydomain, localhost
-=======
-#mydestination = $myhostname, localhost.$mydomain, localhost
->>>>>>> t510
 #mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
 #mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain,
 #	mail.$mydomain, www.$mydomain, ftp.$mydomain
@@ -221,11 +202,7 @@ mydestination = $myhostname, localhost.$mydomain, localhost
 # In the left-hand side, specify a bare username, an @domain.tld
 # wild-card, or specify a user@domain.tld address.
 # 
-<<<<<<< HEAD
 local_recipient_maps = unix:passwd.byname $alias_maps
-=======
-#local_recipient_maps = unix:passwd.byname $alias_maps
->>>>>>> t510
 #local_recipient_maps = proxy:unix:passwd.byname $alias_maps
 #local_recipient_maps =
 
@@ -267,11 +244,7 @@ unknown_local_recipient_reject_code = 550
 # only the local machine.
 # 
 #mynetworks_style = class
-<<<<<<< HEAD
 mynetworks_style = subnet
-=======
-#mynetworks_style = subnet
->>>>>>> t510
 #mynetworks_style = host
 
 # Alternatively, you can specify the mynetworks list by hand, in
@@ -285,11 +258,7 @@ mynetworks_style = subnet
 # of listing the patterns here. Specify type:table for table-based lookups
 # (the value on the table right-hand side is not used).
 #
-<<<<<<< HEAD
 mynetworks = 192.1.6.0/24, 127.0.0.0/8
-=======
-#mynetworks = 168.100.189.0/28, 127.0.0.0/8
->>>>>>> t510
 #mynetworks = $config_directory/mynetworks
 #mynetworks = hash:/etc/postfix/network_table
 
@@ -411,11 +380,7 @@ mynetworks = 192.1.6.0/24, 127.0.0.0/8
 # "postfix reload" to eliminate the delay.
 #
 #alias_maps = dbm:/etc/aliases
-<<<<<<< HEAD
 alias_maps = hash:/etc/aliases
-=======
-#alias_maps = hash:/etc/aliases
->>>>>>> t510
 #alias_maps = hash:/etc/aliases, nis:mail.aliases
 #alias_maps = netinfo:/aliases
 
@@ -426,11 +391,7 @@ alias_maps = hash:/etc/aliases
 #
 #alias_database = dbm:/etc/aliases
 #alias_database = dbm:/etc/mail/aliases
-<<<<<<< HEAD
 alias_database = hash:/etc/aliases
-=======
-#alias_database = hash:/etc/aliases
->>>>>>> t510
 #alias_database = hash:/etc/aliases, hash:/opt/majordomo/aliases
 
 # ADDRESS EXTENSIONS (e.g., user+foo)
@@ -442,11 +403,7 @@ alias_database = hash:/etc/aliases
 # Basically, the software tries user+foo and .forward+foo before
 # trying user and .forward.
 #
-<<<<<<< HEAD
 recipient_delimiter = +
-=======
-#recipient_delimiter = +
->>>>>>> t510
 
 # DELIVERY TO MAILBOX
 #
@@ -455,11 +412,7 @@ recipient_delimiter = +
 # mailbox file is /var/spool/mail/user or /var/mail/user.  Specify
 # "Maildir/" for qmail-style delivery (the / is required).
 #
-<<<<<<< HEAD
 home_mailbox = Mailbox
-=======
-#home_mailbox = Mailbox
->>>>>>> t510
 #home_mailbox = Maildir/
  
 # The mail_spool_directory parameter specifies the directory where
@@ -467,11 +420,7 @@ home_mailbox = Mailbox
 # system type.
 #
 #mail_spool_directory = /var/mail
-<<<<<<< HEAD
 mail_spool_directory = /var/spool/mail
-=======
-#mail_spool_directory = /var/spool/mail
->>>>>>> t510
 
 # The mailbox_command parameter specifies the optional external
 # command to use instead of mailbox delivery. The command is run as
@@ -492,11 +441,7 @@ mail_spool_directory = /var/spool/mail
 # IF YOU USE THIS TO DELIVER MAIL SYSTEM-WIDE, YOU MUST SET UP AN
 # ALIAS THAT FORWARDS MAIL FOR ROOT TO A REAL USER.
 #
-<<<<<<< HEAD
 mailbox_command = /some/where/procmail
-=======
-#mailbox_command = /some/where/procmail
->>>>>>> t510
 #mailbox_command = /some/where/procmail -a "$EXTENSION"
 
 # The mailbox_transport specifies the optional transport in master.cf
