@@ -1,0 +1,4 @@
+# Write your default config options here!
+font='Microsoft YaHei'
+ffactor=10
+subfont-text-scale=4
