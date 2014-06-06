@@ -36,6 +36,9 @@
 #===============================================================================
 
 set -o nounset                              # Treat unset variables as an error
+[ -r /etc/default/locale ] && . /etc/default/locale
+[ -n "$LANG" ] && export LANG
+
 <CURSOR>
 §%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == comment.keyword-bug == append ==
