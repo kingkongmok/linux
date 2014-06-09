@@ -101,5 +101,5 @@ alias s='sdcv'
 alias mysql='mysql --sigint-ignore'
 alias grep='grep --perl-regexp --color=auto'
 alias g='grep --perl-regexp --color=auto'
-
-
+alias mv='mv -i'
+alias cp='cp -i'
