@@ -25,7 +25,10 @@ start() {
 	    ${tmpnice} ${tmpionice} \
 	    -u ${dbuser} -v \
 	    -e HOME=${homedir} \
-	    -x /opt/bin/dropbox; then
+
+        # edited by kk, to enable go through socket.
+	    #-x /opt/bin/dropbox; then
+	    -x /usr/bin/proxychains /opt/bin/dropbox; then
 	    started="${started} ${dbuser}"
 	else
 	    eend $?
