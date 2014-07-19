@@ -67,8 +67,8 @@ HISTCONTROL=ignoredups:ignorespace
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=20000
-HISTFILESIZE=20000
+HISTSIZE=30000
+HISTFILESIZE=30000
 
 # Display Date And Time For Each Command
 HISTTIMEFORMAT="%F %T "
