@@ -61,6 +61,8 @@ set t_Co=256
 set autoindent
 :nnoremap <F8> :setl noai nocin nosi inde=<CR>
 map <F10> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+:nnoremap <F5> "=strftime("%c")<CR>P
+:inoremap <F5> <C-R>=strftime("%c")<CR>
 
 
 " Source a global configuration file if available
