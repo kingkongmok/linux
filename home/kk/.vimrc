@@ -61,6 +61,13 @@ set t_Co=256
 set autoindent
 :nnoremap <F8> :setl noai nocin nosi inde=<CR>
 map <F10> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+:nnoremap <F5> "=strftime("%c")<CR>P
+:inoremap <F5> <C-R>=strftime("%c")<CR>
+
+" nohighlight for bars on mutriWindows
+hi StatusLine ctermfg=39 ctermbg=239 cterm=None
+hi StatusLineNC ctermfg=39 ctermbg=239 cterm=None
+hi VertSplit ctermfg=39 ctermbg=239 cterm=None
 
 
 " Source a global configuration file if available
