@@ -64,7 +64,7 @@ map <F10> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 :nnoremap <F5> "=strftime("%c")<CR>P
 :inoremap <F5> <C-R>=strftime("%c")<CR>
 
-" nohighlight for bars on mutriWindows
+" nohighlight for bars on mutriWindows 设置多窗口的分割栏颜色
 hi StatusLine ctermfg=39 ctermbg=239 cterm=None
 hi StatusLineNC ctermfg=39 ctermbg=239 cterm=None
 hi VertSplit ctermfg=39 ctermbg=239 cterm=None
